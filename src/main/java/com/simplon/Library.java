@@ -1,6 +1,7 @@
 package com.simplon;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by alonso on 15/02/17.
@@ -33,18 +34,15 @@ public class Library {
         return this.cds;
     }
 
-    public ArrayList<Dvd> putDvds(ArrayList<Dvd> newDvds) {
-       if(this.dvds.size() + newDvds.size() <= MAX_DVD){
-            boolean doublon = false;
-            for(Dvd dvd : newDvds ){
-                if (this.dvds.contains(dvd)) {
-                    doublon = true;
-                    break;
-                }
+     public ArrayList<Dvd> putDvds(ArrayList<Dvd> newDvds) {
+        if(this.dvds.size() + newDvds.size() <= MAX_DVD) {
+            HashSet<Dvd> hashSetDvds = new HashSet<>(this.dvds);
+            hashSetDvds.addAll(newDvds);
+            if (hashSetDvds.size() == this.dvds.size() + newDvds.size()) {
+                this.dvds.addAll(newDvds);
             }
-            if (!doublon) this.dvds.addAll(newDvds);
         }
-       return this.dvds;
+            return this.dvds;
     }
 
     public boolean isOpen(int hour) {

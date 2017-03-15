@@ -91,6 +91,23 @@ public class LibraryTest {
     }
 
     @Test
+    public void putDvds_WithDoublonInEmptyList(){
+        //set
+        ArrayList<Dvd> dvds = new ArrayList<>();
+        Library library = new Library(new ArrayList<>(), new ArrayList<>(), dvds);
+
+        ArrayList<Dvd> newDvds = new ArrayList<>();
+        Dvd newDvd = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
+        Dvd dvd1 = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
+        newDvds.addAll(Arrays.asList(newDvd, dvd1));
+        //test
+        ArrayList<Dvd> result = library.putDvds(newDvds);
+        //assert
+        assertArrayEquals(dvds.toArray(), result.toArray());
+    }
+
+
+    @Test
     public void putDvds_With4(){
         //set
         ArrayList<Dvd> dvds = new ArrayList<>();
@@ -131,6 +148,8 @@ public class LibraryTest {
         //assert
         assertFalse(result);
     }
+
+
 
 
 
