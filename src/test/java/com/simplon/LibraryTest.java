@@ -20,7 +20,8 @@ public class LibraryTest {
         Book book = new Book("book1", 210);
         Book book1 = new Book("book2", 210);
         books.addAll(Arrays.asList(book, book1));
-        Library library = new Library(books, new ArrayList<>(), new ArrayList<>());
+        Library library = new Library();
+        library.putBooks(books);
         ArrayList<Book> newBooks = new ArrayList<>();
         Book newBook = new Book("newBbook", 210);
         newBooks.add(newBook);
@@ -40,7 +41,8 @@ public class LibraryTest {
         Cd cd = new Cd("cd1", 210);
         Cd cd1 = new Cd("cd2", 210);
         cds.addAll(Arrays.asList(cd, cd1));
-        Library library = new Library(new ArrayList<>(), cds,  new ArrayList<>());
+        Library library = new Library();
+        library.putCDs(cds);
         ArrayList<Cd> newCds = new ArrayList<>();
         Cd newCd = new Cd("newCd", 210);
         newCds.add(newCd);
@@ -48,7 +50,7 @@ public class LibraryTest {
         cdsResult.addAll(cds);
         cdsResult.addAll(newCds);
         //test
-        ArrayList<Cd> result = library.putCds(newCds);
+        ArrayList<Cd> result = library.putCDs(newCds);
         //assert
         assertArrayEquals(cdsResult.toArray(), result.toArray());
     }
@@ -60,7 +62,8 @@ public class LibraryTest {
         Dvd dvd = new Dvd("dvd1", 210, Dvd.Movie.ACTION, true);
         Dvd dvd1 = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
         dvds.addAll(Arrays.asList(dvd, dvd1));
-        Library library = new Library(new ArrayList<>(), new ArrayList<>(), dvds);
+        Library library = new Library();
+        library.putDvds(dvds);
         ArrayList<Dvd> newDvds = new ArrayList<>();
         Dvd newDvd = new Dvd("newDvd", 210, Dvd.Movie.FUN, true);
         newDvds.add(newDvd);
@@ -80,7 +83,8 @@ public class LibraryTest {
         Dvd dvd = new Dvd("dvd1", 210, Dvd.Movie.ACTION, true);
         Dvd dvd1 = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
         dvds.addAll(Arrays.asList(dvd, dvd1));
-        Library library = new Library(new ArrayList<>(), new ArrayList<>(), dvds);
+        Library library = new Library();
+        library.putDvds(dvds);
         ArrayList<Dvd> newDvds = new ArrayList<>();
         Dvd newDvd = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
         newDvds.add(newDvd);
@@ -94,8 +98,8 @@ public class LibraryTest {
     public void putDvds_WithDoublonInEmptyList(){
         //set
         ArrayList<Dvd> dvds = new ArrayList<>();
-        Library library = new Library(new ArrayList<>(), new ArrayList<>(), dvds);
-
+        Library library = new Library();
+        library.putDvds(dvds);
         ArrayList<Dvd> newDvds = new ArrayList<>();
         Dvd newDvd = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
         Dvd dvd1 = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
@@ -114,8 +118,9 @@ public class LibraryTest {
         Dvd dvd = new Dvd("dvd1", 210, Dvd.Movie.ACTION, true);
         Dvd dvd1 = new Dvd("dvd2", 210, Dvd.Movie.MUSICAL, false);
         Dvd dvd3 = new Dvd("dvd3", 210, Dvd.Movie.MUSICAL, false);
-        dvds.addAll(Arrays.asList(dvd, dvd1));
-        Library library = new Library(new ArrayList<>(), new ArrayList<>(), dvds);
+        dvds.addAll(Arrays.asList(dvd, dvd1, dvd3));
+        Library library = new Library();
+        library.putDvds(dvds);
         ArrayList<Dvd> newDvds = new ArrayList<>();
         Dvd newDvd = new Dvd("newDvd", 210, Dvd.Movie.MUSICAL, false);
         newDvds.add(newDvd);
@@ -124,8 +129,6 @@ public class LibraryTest {
         //assert
         assertArrayEquals(dvds.toArray(), result.toArray());
     }
-
-
 
     @Test
     public void isOpenBetween1to7() {
@@ -148,13 +151,4 @@ public class LibraryTest {
         //assert
         assertFalse(result);
     }
-
-
-
-
-
-
-
-
-
 }

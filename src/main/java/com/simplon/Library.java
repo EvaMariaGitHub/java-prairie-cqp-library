@@ -6,7 +6,7 @@ import java.util.HashSet;
 /**
  * Created by alonso on 15/02/17.
  */
-public class Library {
+public class Library implements ILibrary{
 
     private static final int MAX_DVD = 3;
     private static final int OUVERTURE = 1;
@@ -24,17 +24,20 @@ public class Library {
     public Library (){
     }
 
-    public ArrayList<Book> putBooks(ArrayList<Book> books) {
+    @Override
+    public ArrayList<Book> putBooks(ArrayList books) {
         this.books.addAll(books);
         return this.books;
     }
 
-    public ArrayList<Cd> putCds(ArrayList<Cd> newCds) {
+    @Override
+    public ArrayList<Cd> putCDs(ArrayList newCds) {
         this.cds.addAll(newCds);
         return this.cds;
     }
 
-     public ArrayList<Dvd> putDvds(ArrayList<Dvd> newDvds) {
+    @Override
+     public ArrayList<Dvd> putDvds(ArrayList newDvds) {
         if(this.dvds.size() + newDvds.size() <= MAX_DVD) {
             HashSet<Dvd> hashSetDvds = new HashSet<>(this.dvds);
             hashSetDvds.addAll(newDvds);
@@ -45,6 +48,7 @@ public class Library {
             return this.dvds;
     }
 
+    @Override
     public boolean isOpen(int hour) {
         return !(hour >= FERMETURE || hour < OUVERTURE);
     }
