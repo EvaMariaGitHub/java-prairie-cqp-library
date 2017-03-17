@@ -15,14 +15,7 @@ public class Library implements ILibrary{
     private ArrayList<Cd> cds = new ArrayList<>();
     private ArrayList<Dvd> dvds = new ArrayList<>();
 
-    public Library (ArrayList<Book> books, ArrayList<Cd> cds, ArrayList<Dvd> dvds){
-        this.books = books;
-        this.cds = cds;
-        this.dvds = dvds;
-    }
-
-    public Library (){
-    }
+    public Library (){}
 
     @Override
     public ArrayList<Book> putBooks(ArrayList books) {
